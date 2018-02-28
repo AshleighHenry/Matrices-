@@ -63,6 +63,7 @@ MyVector3::MyVector3(sf::Vector2i t_sfVector)
 	// casts to 2D int
 	x = static_cast<int>(t_sfVector.x);
 	y = static_cast<int>(t_sfVector.y);
+	z = 0;
 }
 
 MyVector3::MyVector3(sf::Vector2u t_sfVector)
@@ -70,6 +71,7 @@ MyVector3::MyVector3(sf::Vector2u t_sfVector)
 	// casts to unsigned
 	x = static_cast<unsigned>(t_sfVector.x);
 	y = static_cast<unsigned>(t_sfVector.y);
+	z = 0;
 }
 
 MyVector3::MyVector3(sf::Vector2f t_sfVector)
@@ -77,6 +79,7 @@ MyVector3::MyVector3(sf::Vector2f t_sfVector)
 	// casts to 2d float
 	x = static_cast<float>(t_sfVector.x);
 	y = static_cast<float>(t_sfVector.y);
+	z = 0;
 }
 
 bool MyVector3::operator==(const MyVector3 t_right) const

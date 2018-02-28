@@ -28,18 +28,18 @@ public:
 
 	MyMatrix3 transpose()const;
 	double determinant() const;
-	MyMatrix3 inverse() const;
+	//MyMatrix3 inverse() const;
 
-	MyVector3 row(const int t_row)const; // 0 is first row, then 1, then 2, there is no row 3
-	MyVector3 column(const int t_column) const; // 0,1,2 
+	//MyVector3 row(const int t_row)const; // 0 is first row, then 1, then 2, there is no row 3
+	//MyVector3 column(const int t_column) const; // 0,1,2 
 
 	
-	static MyMatrix3 rotationZ(const double t_angleRadians); // rotate 1,1,1 by PI/2  -> -1,1,1
-	static MyMatrix3 rotationY(const double t_angleRadians); // rotate 1,1,1 by PI/2  ->  1,1,-1
-	static MyMatrix3 rotationX(const double t_angleRadians); // rotate 1,1,1 by PI/2  ->  1,-1,1
+	//static MyMatrix3 rotationZ(const double t_angleRadians); // rotate 1,1,1 by PI/2  -> -1,1,1
+	//static MyMatrix3 rotationY(const double t_angleRadians); // rotate 1,1,1 by PI/2  ->  1,1,-1
+	//static MyMatrix3 rotationX(const double t_angleRadians); // rotate 1,1,1 by PI/2  ->  1,-1,1
 
-	static MyMatrix3 translation(const MyVector3 t_displacement); // 2d translation make sure z=1
-	static MyMatrix3 scale(const double t_scalingfactor);
+	//static MyMatrix3 translation(const MyVector3 t_displacement); // 2d translation make sure z=1
+	//static MyMatrix3 scale(const double t_scalingfactor);
 
 
 private:
