@@ -151,9 +151,102 @@ MyMatrix3 MyMatrix3::transpose() const
 }
 
 double MyMatrix3::determinant() const
-{	// not correct 
-	double answer = (((m_11 * m_22 * m_33) + (m_12  * m_23 * m_31) + (m_13 * m_21 * m_32))
-					- ((m_13 * m_22 * m_31) - (m_11 * m_23 * m_32) - (m_12 * m_21 * m_33)));
+{	
+	double answer = m_11 * ((m_22 * m_33) - (m_32 * m_23)) - m_21 * ((m_33 * m_12) - (m_32*m_13)) + m_31 *((m_23*m_12) - (m_22 *m_13));
 	return answer;
+}
+
+MyMatrix3 MyMatrix3::inverse() const
+{	
+	double deter = 1.0 / determinant();
+	MyVector3 rowOne = { ((m_33 * m_22)  - (m_32 * m_23)),((m_32 * m_13) - (m_33 * m_12)), ((m_23 * m_12) - (m_22 * m_13)) };
+	MyVector3 rowTwo = { ((m_31 * m_23) - (m_33 * m_21)),((m_33 * m_11) - (m_31 * m_13)), ((m_21 * m_13) - (m_23 * m_11)) };
+	MyVector3 rowThr = { ((m_32 * m_21) - (m_31 * m_22)),((m_31 * m_12) - (m_32 * m_11)), ((m_22 * m_11) - (m_21 * m_12)) };
+	MyMatrix3 answer = { rowOne,rowTwo,rowThr };
+	return MyMatrix3(answer * deter);
+}
+
+MyVector3 MyMatrix3::row(const int t_row) const
+{
+	MyVector3 answer;
+	switch (t_row)
+	{
+	case 0:
+		answer = { m_11, m_12, m_13 };
+		break;
+	case 1:
+		answer = { m_21, m_22, m_23 };
+		break;
+	case 2:
+		answer = { m_31, m_32, m_33 };
+		break;
+	default:
+		std::cout << "error, invalid row num" << std::endl;
+		break;
+	}
+	return MyVector3(answer);
+}
+
+MyVector3 MyMatrix3::column(const int t_column) const
+{
+	MyVector3 answer;
+	switch (t_column)
+	{
+	case 0:
+		answer = { m_11, m_21, m_31 };
+		break;
+	case 1:
+		answer = { m_12, m_22, m_32 };
+		break;
+	case 2:
+		answer = { m_13, m_23, m_33 };
+		break;
+	default:
+		std::cout << "error, invalid column num" << std::endl;
+		break;
+	}
+	return MyVector3(answer);
+}
+
+MyMatrix3 MyMatrix3::rotationZ(const double t_angleRadians)
+{
+	MyVector3 topRow = { cos(t_angleRadians), -sin(t_angleRadians), 0 };
+	MyVector3 midRow = { sin(t_angleRadians), cos(t_angleRadians), 0 };
+	MyVector3 botRow = { 0,0,1 };
+	return MyMatrix3(topRow,midRow,botRow);
+}
+
+MyMatrix3 MyMatrix3::rotationY(const double t_angleRadians)
+{
+	MyVector3 topRow = { cos(t_angleRadians), 0, sin(t_angleRadians) };
+	MyVector3 midRow = { 0,1,0 };
+	MyVector3 botRow = { -sin(t_angleRadians), 0, cos(t_angleRadians) };
+	return MyMatrix3(topRow,midRow,botRow);
+}
+
+MyMatrix3 MyMatrix3::rotationX(const double t_angleRadians)
+{
+	MyVector3 topRow = { 1,0,0 };
+	MyVector3 midRow = { 0, cos(t_angleRadians),-sin(t_angleRadians) };
+	MyVector3 botRow = { 0, sin(t_angleRadians), cos(t_angleRadians) };
+
+	return MyMatrix3(topRow,midRow,botRow);
+}
+
+MyMatrix3 MyMatrix3::translation(const MyVector3 t_displacement)
+{
+	
+		MyMatrix3 answer = { 1,0,t_displacement.x,
+							 0,1,t_displacement.y,
+							 0,0,t_displacement.z };
+	return MyMatrix3(answer);
+}
+
+MyMatrix3 MyMatrix3::scale(const double t_scalingfactor)
+{
+	MyMatrix3 answer = { t_scalingfactor, 0, 0,
+						 0, t_scalingfactor,0,
+						 0,0,t_scalingfactor };
+	return MyMatrix3(answer);
 }
 

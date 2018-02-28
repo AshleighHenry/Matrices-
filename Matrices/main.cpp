@@ -2,8 +2,11 @@
 /// Empty Project for SFML[2.4.2]
 /// 
 /// 
-/// @author Peter Lowe
-/// @date May 21017
+/// @author Ashleigh Henry
+/// // login c00225954
+/// time taken  7 hours 
+/// est time was 10 hours 
+/// @date 27,28/02/18
 /// </summary>
 
 #ifdef _DEBUG 
@@ -23,6 +26,7 @@
 #include <iostream>
 #include "InitialMyMatrix3.h"
 #include "MyVector3.h"
+#define PI           3.14159265358979323846
 
 /// <summary>
 /// main enrtry point
@@ -103,12 +107,60 @@ int main()
 	std::cout << "" << std::endl;
 	// ----------------------------------------------
 	
-	std::cout << "--- Derterminate of a Matrix" << std::endl;
+	std::cout << "--- Derterminate of a Matrix ---" << std::endl;
 	std::cout << std::to_string(matrixTwo.determinant()) << std::endl;
 	std::cout << "Expected Outcome" << std::endl;
 	std::cout << "26.964" << std::endl;
-	// oh noey 
+	std::cout << "" << std::endl;
+	// ----------------------------------------------
 
+	std::cout << "--- Inverse of a Matrix ---" << std::endl;
+	std::cout << matrixTwo.inverse().toString() << std::endl;
+	std::cout << "Expected Outcome" << std::endl;
+	std::cout << "0.16, -0.33, 0.06, 0.12, -0.49, -0.68, 0, 0.47, 0.47" << std::endl; // heck yeah 
+	std::cout << "" << std::endl;
+	// ----------------------------------------------
+
+	std::cout << "--- Row ---" << std::endl;
+	std::cout << matrixTwo.row(2).toString() << std::endl;
+	std::cout << "" << std::endl;
+	// ----------------------------------------------
+	// i didn't do an expected outcome for this or the rows because its easy to just check in the code 
+	std::cout << "--- Column ---" << std::endl;
+	std::cout << matrixTwo.column(1).toString() << std::endl; 
+	std::cout << "" << std::endl;
+	// ----------------------------------------------
+
+	std::cout << "-- Rotation Z ---" << std::endl;
+	MyVector3 rotationVectorZ = { 1,1,1 };
+	MyVector3 rotateOne = MyMatrix3::rotationZ(PI / 2) * rotationVectorZ;
+	std::cout << rotateOne.toString() << std::endl;
+	std::cout << "" << std::endl;
+	// ----------------------------------------------
+
+	std::cout << "-- Rotation Y ---" << std::endl;
+	MyVector3 rotationVectorY = { 1,1,1 };
+	MyVector3 rotateTwo = MyMatrix3::rotationY(PI / 2) * rotationVectorY;
+	std::cout << rotateTwo.toString() << std::endl;
+	std::cout << "" << std::endl;
+	// ----------------------------------------------
+
+	std::cout << "-- Rotation X ---" << std::endl;
+	MyVector3 rotationVectorX= { 1,1,1 };
+	MyVector3 rotateThree = MyMatrix3::rotationX(PI / 2) * rotationVectorX;
+	std::cout << rotateThree.toString() << std::endl;
+	std::cout << "" << std::endl;
+	// ----------------------------------------------
+
+	std::cout << "--- Translation ---" << std::endl;
+	matrixThree = matrixTwo.translation(MyVector3{ 3,7,2 });
+	// new translation 
+	MyVector3 newPoint = matrixThree * MyVector3{ 2,3,1 };
+	std::cout << newPoint.toString() << std::endl;
+	// ----------------------------------------------
+
+	std::cout << "--- Scaling Factor ---" << std::endl;
+	std::cout << matrixTwo.scale(4).toString() << std::endl;
 	std::system("pause");
 	return 0;
 }
