@@ -77,7 +77,9 @@ int main()
 
 	std::cout << "--- Matrix Multiplcation x Matrix ---" << std::endl;
 	std::cout << matrixOne.operator*(matrixTwo).toString();
-	std::cout << "" << std::endl; std::cout << "" << std::endl;
+	std::cout << "Expected Outcome" << std::endl;
+	std::cout << "2.4, 5, 9.14, 2.4, 5, 9.14, 2.4, 5, 9.14"<< std::endl;
+	std::cout << "" << std::endl;
 	// ----------------------------------------------
 
 	std::cout << " -- Matrix Maltiplication x 3D Vector ---" << std::endl;
